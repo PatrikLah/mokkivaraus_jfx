@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="400.0" prefWidth="600.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uusivaraus.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="600.0">
+         <right>
+            <AnchorPane prefHeight="400.0" prefWidth="214.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="Hyvaksynappi" layoutX="74.0" layoutY="285.0" mnemonicParsing="false" onAction="#pressButton" prefHeight="42.0" prefWidth="80.0" text="Hyväksy" />
+                  <TextArea fx:id="tiedotTextArea" layoutX="14.0" layoutY="51.0" onMouseClicked="#naytaTiedot" prefHeight="200.0" prefWidth="184.0" />
+                  <Label fx:id="otsikko2Label" layoutX="26.0" layoutY="21.0" prefHeight="17.0" prefWidth="118.0" text="Varauksen tiedot:" />
+               </children></AnchorPane>
+         </right>
+         <center>
+            <AnchorPane prefHeight="338.0" prefWidth="252.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="OtsikkoLabel" alignment="CENTER" layoutX="20.0" layoutY="14.0" prefHeight="31.0" prefWidth="346.0" text="Uusi varaus">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Label>
+                  <Label fx:id="NimiLabel" layoutX="43.0" layoutY="66.0" prefHeight="25.0" prefWidth="42.0" text="Nimi" />
+                  <Label fx:id="AlueLabel" layoutX="43.0" layoutY="110.0" prefHeight="25.0" prefWidth="42.0" text="Alue" />
+                  <Label fx:id="MokkiLabel" layoutX="43.0" layoutY="155.0" prefHeight="25.0" prefWidth="42.0" text="Mökki" />
+                  <TextField fx:id="nimiTextField" layoutX="119.0" layoutY="63.0" onMouseClicked="#naytaTiedot" prefHeight="31.0" prefWidth="159.0" promptText="Etunimi Sukunimi" />
+                  <ComboBox fx:id="AlueComboBox" layoutX="118.0" layoutY="107.0" onMouseClicked="#naytaTiedot" prefHeight="32.0" prefWidth="156.0" />
+                  <ComboBox fx:id="MökkiComboBox" layoutX="118.0" layoutY="153.0" onMouseClicked="#naytaTiedot" prefHeight="30.0" prefWidth="157.0" />
+                  <DatePicker fx:id="alkuDatePicker" layoutX="64.0" layoutY="212.0" onMouseClicked="#naytaTiedot" promptText="alku pvm" />
+                  <DatePicker fx:id="loppuDatePicker" layoutX="64.0" layoutY="257.0" onMouseClicked="#naytaTiedot" promptText="loppu pvm" />
+               </children></AnchorPane>
+         </center></BorderPane>
+   </children>
+</GridPane>
