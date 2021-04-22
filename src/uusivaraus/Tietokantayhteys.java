@@ -18,7 +18,7 @@ public class Tietokantayhteys {
 
             // käyttäjän tiedot
             String user = "root";
-            String pass = "Terhi88";
+            String pass = "";
 
             //yhteys tietokantaan käyttäen Connection luokkaa
             Connection conn = DriverManager.getConnection(url,user,pass);
