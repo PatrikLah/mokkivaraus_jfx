@@ -6,8 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import uusivaraus.Tietokantayhteys;
 import uusivaraus.uusivaraus;
 
 import java.io.IOException;
@@ -15,7 +15,7 @@ import java.io.IOException;
 
 //pääikkuna = aloitusnäyttö josta pääsee eteenpäin ja johon voi palata
 public class Main extends Application {
-    private Stage primaryStage;
+    private static Stage primaryStage;
     private static BorderPane mainLayout;
 
     @Override
@@ -45,7 +45,7 @@ public class Main extends Application {
     //metodi josta pääsee painiketta painamalla varauskalenteri tilaan
     public static void naytaVarausKalenteri() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(uusivaraus.class.getResource("/Varauskalenteri/kalenteri.fxml"));
+        loader.setLocation(uusivaraus.class.getResource("/uusivaraus/kalenteri.fxml"));
         AnchorPane varauskalenteri = loader.load();
         mainLayout.setCenter(varauskalenteri);
     }
@@ -53,8 +53,19 @@ public class Main extends Application {
     public static void naytaUusiVaraus() throws IOException{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(uusivaraus.class.getResource("/uusivaraus/uusivaraus.fxml"));
+
         GridPane uusivaraus = loader.load();
-        mainLayout.setCenter(uusivaraus);
+
+        Stage addDialogStage  = new Stage();
+        addDialogStage.setTitle("uusi varaus");
+        addDialogStage.initModality(Modality.WINDOW_MODAL);
+        addDialogStage.initOwner(primaryStage);
+
+        Scene scene = new Scene(uusivaraus);
+        addDialogStage.setScene(scene);
+        addDialogStage.showAndWait();
+        //mainLayout.setCenter(uusivaraus);
+
     }
 
     public static void main(String[] args) throws Exception{

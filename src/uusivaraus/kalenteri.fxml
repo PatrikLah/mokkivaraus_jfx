@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uusivaraus.VarauskalenteriController">
+   <children>
+      <Label layoutX="14.0" layoutY="26.0" prefHeight="17.0" prefWidth="171.0" text="Varauskalenteri">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TabPane layoutX="14.0" layoutY="68.0" prefHeight="318.0" prefWidth="575.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Varaukset">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="273.0" prefWidth="518.0">
+                     <children>
+                        <DatePicker layoutX="129.0" layoutY="14.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="21.0" layoutY="18.0" prefHeight="17.0" prefWidth="88.0" text="Valitse aika" />
+                        <TableView fx:id="tableView" layoutX="15.0" layoutY="54.0" prefHeight="200.0" prefWidth="543.0">
+                          <columns>
+                            <TableColumn fx:id="varausIDColumn" prefWidth="75.0" text="varausID" />
+                            <TableColumn fx:id="asiakasColumn" prefWidth="75.0" text="asiakasID" />
+                              <TableColumn fx:id="MokkiColumn" prefWidth="75.0" text="mökkiID" />
+                              <TableColumn fx:id="varattuColumn" prefWidth="77.33334350585938" text="varattu" />
+                              <TableColumn fx:id="alkuColumn" prefWidth="86.33331298828125" text="Alkupvm" />
+                              <TableColumn fx:id="loppuColumn" minWidth="0.0" prefWidth="94.66667175292969" text="Loppupvm" />
+                          </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#poistaVaraus" text="Poista" />
+                                    <MenuItem mnemonicParsing="false" onAction="#poistaVaraus" text="Muokkaa" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Vapaat ajat">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

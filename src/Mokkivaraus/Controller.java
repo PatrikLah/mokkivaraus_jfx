@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 
-//pääluokan (Mökkivarauksen) controlleri, jossa on tapahtumat
+//pääluokan (Mökkivarauksen) kontrolleri, jossa on tapahtumat
 public class Controller {
 
     //tapahtuma painikkeelle, jolla pääsee varauskalenteri-ikkunaan
