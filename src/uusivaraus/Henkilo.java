@@ -1,100 +1,79 @@
 package uusivaraus;
 
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.DatePicker;
-
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 public class Henkilo {
-   /* private SimpleIntegerProperty nimi;
-    private SimpleIntegerProperty alue;
- //   private SimpleStringProperty mokki;
+    private SimpleIntegerProperty varaus;
+    private SimpleStringProperty enimi;
+    private SimpleStringProperty snimi;
+    private SimpleStringProperty alue;
+    private SimpleStringProperty mokki;
     private SimpleStringProperty alkupvm;
-    private SimpleStringProperty loppupvm; */
+    private SimpleStringProperty loppupvm;
 
-    final private SimpleIntegerProperty varaus;
-    final private SimpleIntegerProperty asiakas;
-    final private SimpleIntegerProperty mokki;
+    private SimpleIntegerProperty varaus2;
+    private SimpleStringProperty enimi2;
+    private SimpleStringProperty snimi2;
+    private SimpleStringProperty palvelu;
+    private SimpleStringProperty pvm;
 
-    final private SimpleStringProperty varattu;
-   // final private SimpleStringProperty  vahvistettu;
-    final private SimpleStringProperty  varAlku;
-    final private SimpleStringProperty  varLoppu;
-
-
-
-
-    /*  public Henkilo(String nimi, String alue, String mokki, String alkupvm, String loppupvm) {
-        this.nimi = new SimpleStringProperty(nimi);
-        this.alue = new SimpleStringProperty(alue);
-        this.mokki = new SimpleStringProperty(mokki);
-        this.alkupvm = new SimpleStringProperty(alkupvm);
-        this.loppupvm = new SimpleStringProperty(loppupvm);
-    }*/
-    public Henkilo(Integer varaus, Integer asiakas, Integer mokki, String varattu, String varAlku, String varLoppu) {
-        this.varaus = new SimpleIntegerProperty(varaus);
-        this.asiakas = new SimpleIntegerProperty(asiakas);
-        this.mokki = new SimpleIntegerProperty(mokki);
-        this.varattu = new SimpleStringProperty(varattu);
-        //this.vahvistettu = new SimpleStringProperty(varattu);
-        this.varAlku = new SimpleStringProperty (varAlku);
-        this.varLoppu = new SimpleStringProperty(varLoppu);
-
+    //mökkien varaus-taulukkoon
+    public Henkilo(Integer varaus, String enimi,String snimi, String alue, String mokki, String alkupvm, String loppupvm) {
+          this.varaus = new SimpleIntegerProperty(varaus);
+          this.enimi = new SimpleStringProperty(enimi);
+          this.snimi = new SimpleStringProperty(snimi);
+          this.alue = new SimpleStringProperty(alue);
+          this.mokki = new SimpleStringProperty(mokki);
+          this.alkupvm = new SimpleStringProperty(alkupvm);
+          this.loppupvm = new SimpleStringProperty(loppupvm);
     }
-    public Integer getVaraus(){
+    //palvelut-taulukkoon
+     public Henkilo(Integer varaus, String enimi, String snimi, String palvelu, String pvm) {
+        this.varaus2 = new SimpleIntegerProperty(varaus);
+        this.enimi2 = new SimpleStringProperty(enimi);
+        this.snimi2 = new SimpleStringProperty(snimi);
+        this.palvelu = new SimpleStringProperty(palvelu);
+        this.pvm = new SimpleStringProperty(pvm);
+    }
+    //mökkien varaukset taulukkoon
+    public Integer getVarausId(){
         return varaus.get();
     }
-    public Integer getAsiakas(){
-        return asiakas.get();
+    public String getEnimi() {
+      return enimi.get();
     }
-    public Integer getMokki(){
-        return mokki.get();
+    public String getSnimi() {
+        return snimi.get();
     }
-    public String getVarattu(){
-        return varattu.get();
-    }
-    public String getVarAlku(){
-        return varAlku.get();
-    }
-    public String getVarLoppu(){
-        return varLoppu.get();
-    }
-  /*  public  getAlue() {
+    public String getAlue() {
         return alue.get();
     }
-
-    public void setAlue(String alue) {
-    }
-
     public String getMokki() {
         return mokki.get();
     }
-
-    public void setMokki(String mokki) {
-    }
-
     public String getAlkupvm() {
         return alkupvm.get();
     }
-
-    public void setAlkupvm(String alkupvm) {
-    }
-
     public String getLoppupvm() {
         return loppupvm.get();
     }
 
-    public void setLoppupvm(String loppupvm) {
+    //palvelut taulukkoon
+    public Integer getVarausId2(){
+        return varaus2.get();
+    }
+    public String getEnimi2() {
+        return enimi2.get();
+    }
+    public String getSnimi2() {
+        return snimi2.get();
+    }
+    public String getPalvelu() {
+        return palvelu.get();
+    }
+    public String getPvm() {
+        return pvm.get();
     }
 
-    public String getNimi() {
-        return nimi.get();
-    }
-
-    public void setNimi(String nimi) {
-    } */
 }

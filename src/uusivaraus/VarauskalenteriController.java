@@ -32,20 +32,37 @@ public class VarauskalenteriController {
     @FXML
     private TableColumn<Henkilo, Number> varausIDColumn;
     @FXML
-    private TableColumn<Henkilo, Number> asiakasColumn;
+    private TableColumn<Henkilo, String> etuNimiColumn;
     @FXML
-    private TableColumn<Henkilo, Number> MokkiColumn;
+    private TableColumn<Henkilo, String> sukuNimiColumn;
     @FXML
-    private TableColumn<Henkilo, String> varattuColumn;
+    private TableColumn<Henkilo, String> aNimiColumn;
+    @FXML
+    private TableColumn<Henkilo, String> mokkiColumn;
     @FXML
     private TableColumn<Henkilo, String> alkuColumn;
     @FXML
     private TableColumn<Henkilo, String> loppuColumn;
-
+    @FXML
     private MenuItem poistaMenuItem;
+
+    //toisen välilehden palvelu-kalenteri
+    @FXML
+    private TableView<Henkilo> tableViewPalvelut;
+    @FXML
+    private TableColumn<Henkilo, Number> varaus2Column;
+    @FXML
+    private TableColumn<Henkilo, String> eNimi2Column;
+    @FXML
+    private TableColumn<Henkilo, String> sNimi2Column;
+    @FXML
+    private TableColumn<Henkilo, String> palvelutColumn;
+    @FXML
+    private TableColumn<Henkilo, String> paivamaaraColumn;
 
     // lisätään tietokannasta haetut tiedot tähän, jotta voidaan myöhemmin muokata niitä
     ObservableList<Henkilo> lista = FXCollections.observableArrayList();
+    ObservableList<Henkilo> lista2 = FXCollections.observableArrayList();
 
 
     //lisätään listan tiedot taulukkoon
@@ -53,38 +70,69 @@ public class VarauskalenteriController {
         initCol();
         tietokantayhteys = new Tietokantayhteys();
         lataaTiedot();
+        lataaPalvelut();
     }
     // jokaisen sarakkeen tiedot
     private void initCol(){
-        varausIDColumn.setCellValueFactory(d -> new SimpleIntegerProperty(d.getValue().getVaraus()));
-        asiakasColumn.setCellValueFactory(d -> new SimpleIntegerProperty(d.getValue().getMokki()));
-        MokkiColumn.setCellValueFactory(d -> new SimpleIntegerProperty(d.getValue().getMokki()));
-        varattuColumn.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getVarattu()));
-        alkuColumn.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getVarAlku()));
-        loppuColumn.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getVarLoppu()));
+        varausIDColumn.setCellValueFactory(d -> new SimpleIntegerProperty(d.getValue().getVarausId()));
+        etuNimiColumn.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getEnimi()));
+        sukuNimiColumn.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getSnimi()));
+        aNimiColumn.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getAlue()));
+        mokkiColumn.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getMokki()));
+        alkuColumn.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getAlkupvm()));
+        loppuColumn.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getLoppupvm()));
+
+        varaus2Column.setCellValueFactory(d -> new SimpleIntegerProperty(d.getValue().getVarausId2()));
+        eNimi2Column.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getEnimi2()));
+        sNimi2Column.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getSnimi2()));
+        palvelutColumn.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getPalvelu()));
+        paivamaaraColumn.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getPvm()));
+
+
     }
     //metodi tietojen lataamiseen tietokannasta
     private void lataaTiedot(){
         Tietokantayhteys tietokantayhteys = new Tietokantayhteys(); //käytetään luokkaan tietokantayhteys
-        String qu = "SELECT * FROM varaus"; //sql komento
+        String qu = "SELECT * FROM varaustiedot"; //sql komento
         ResultSet set = tietokantayhteys.execQuery(qu); //käytetään tietokantayhteys-luokan metodia
         try{
             while(set.next()){ //luetaan rivit ja tallennetaan uusiin muuttujiin tietokannan tiedot
                 Integer varausID = set.getInt("varaus_id");
-                Integer asiakasID = set.getInt("asiakas_id");
-                Integer mokkiID = set.getInt("mokki_mokki_id");
-                String varattu = set.getString("varattu_pvm");
-                //String vahvistettu = set.getString("vahvistettu_pvm");
+                String etunimi = set.getString("Etunimi");
+                String sukunimi = set.getString("sukunimi");
+                String aluenimi = set.getString("nimi");
+                String mokkinimi = set.getString("mokkinimi");
                 String varattuAlku = set.getString("varattu_alkupvm");
                 String varattuLoppu = set.getString("varattu_loppupvm");
                 //lisätään obsevablelistaan tiedot tietokannasta haetut tiedot
-                lista.add(new Henkilo(varausID, asiakasID, mokkiID, varattu, varattuAlku, varattuLoppu));
+                lista.add(new Henkilo(varausID,etunimi,sukunimi,aluenimi,mokkinimi, varattuAlku, varattuLoppu));
 
             }
         }catch (SQLException e){
             Logger.getLogger(uusivarausController.class.getName()).log(Level.SEVERE, null, "ex");
         }
         tableView.setItems(lista); //asetetaan taulukkoon lista, johon tiedot kerätty
+    }
+    private void lataaPalvelut(){
+        Tietokantayhteys tietokantayhteys = new Tietokantayhteys(); //käytetään luokkaan tietokantayhteys
+        String qu = "SELECT * FROM palvelutiedot"; //sql komento
+        ResultSet set = tietokantayhteys.execQuery(qu); //käytetään tietokantayhteys-luokan metodia
+        try{
+            while(set.next()){ //luetaan rivit ja tallennetaan uusiin muuttujiin tietokannan tiedot
+                Integer varausID = set.getInt("varaus_id");
+                String etunimi = set.getString("Etunimi");
+                String sukunimi = set.getString("sukunimi");
+                String palvelunimi = set.getString("nimi");
+                String varattu = set.getString("varattu_pvm");
+
+                //lisätään obsevablelistaan tiedot tietokannasta haetut tiedot
+                lista2.add(new Henkilo(varausID, etunimi, sukunimi,palvelunimi,varattu));
+
+            }
+        }catch (SQLException e){
+            Logger.getLogger(uusivarausController.class.getName()).log(Level.SEVERE, null, "ex");
+        }
+        tableViewPalvelut.setItems(lista2); //asetetaan taulukkoon lista, johon tiedot kerätty
     }
 
     // pääikkunasta pääsee varauskalenteriin

@@ -19,27 +19,28 @@
          </font></Label>
       <TabPane layoutX="14.0" layoutY="68.0" prefHeight="318.0" prefWidth="575.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Varaukset">
+          <Tab text="Mökki varaukset">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="273.0" prefWidth="518.0">
                      <children>
                         <DatePicker layoutX="129.0" layoutY="14.0" />
                         <Label alignment="CENTER_RIGHT" layoutX="21.0" layoutY="18.0" prefHeight="17.0" prefWidth="88.0" text="Valitse aika" />
-                        <TableView fx:id="tableView" layoutX="15.0" layoutY="54.0" prefHeight="200.0" prefWidth="543.0">
-                          <columns>
-                            <TableColumn fx:id="varausIDColumn" prefWidth="75.0" text="varausID" />
-                            <TableColumn fx:id="asiakasColumn" prefWidth="75.0" text="asiakasID" />
-                              <TableColumn fx:id="MokkiColumn" prefWidth="75.0" text="mökkiID" />
-                              <TableColumn fx:id="varattuColumn" prefWidth="77.33334350585938" text="varattu" />
-                              <TableColumn fx:id="alkuColumn" prefWidth="86.33331298828125" text="Alkupvm" />
-                              <TableColumn fx:id="loppuColumn" minWidth="0.0" prefWidth="94.66667175292969" text="Loppupvm" />
-                          </columns>
+                        <TableView fx:id="tableView" layoutY="53.0" prefHeight="200.0" prefWidth="575.0">
+                           <columns>
+                              <TableColumn fx:id="varausIDColumn" prefWidth="56.666659355163574" text="varausID" />
+                              <TableColumn fx:id="etuNimiColumn" prefWidth="82.66667938232422" text="Etunimi" />
+                              <TableColumn fx:id="sukuNimiColumn" prefWidth="86.66665649414062" text="Sukunimi" />
+                              <TableColumn fx:id="aNimiColumn" prefWidth="60.66664123535156" text="Alue" />
+                              <TableColumn fx:id="mokkiColumn" prefWidth="85.3333740234375" text="Mökki" />
+                              <TableColumn fx:id="alkuColumn" minWidth="0.0" prefWidth="104.0" text="Alkupvm" />
+                              <TableColumn fx:id="loppuColumn" minWidth="0.0" prefWidth="96.66659545898438" text="Loppupvm" />
+                           </columns>
                            <contextMenu>
                               <ContextMenu>
-                                <items>
-                                  <MenuItem mnemonicParsing="false" onAction="#poistaVaraus" text="Poista" />
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#poistaVaraus" text="Poista" />
                                     <MenuItem mnemonicParsing="false" onAction="#poistaVaraus" text="Muokkaa" />
-                                </items>
+                                 </items>
                               </ContextMenu>
                            </contextMenu>
                         </TableView>
@@ -47,9 +48,20 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Vapaat ajat">
+          <Tab text="Palveluiden varaukset">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableViewPalvelut" layoutX="27.0" layoutY="31.0" prefHeight="225.0" prefWidth="522.0">
+                           <columns>
+                              <TableColumn fx:id="varaus2Column" prefWidth="75.0" text="VarausID" />
+                              <TableColumn fx:id="eNimi2Column" prefWidth="85.99996185302734" text="Etunimi" />
+                              <TableColumn fx:id="sNimi2Column" prefWidth="97.33331298828125" text="Sukunimi" />
+                              <TableColumn fx:id="palvelutColumn" prefWidth="97.33331298828125" text="Palvelu" />
+                              <TableColumn fx:id="paivamaaraColumn" prefWidth="97.33331298828125" text="Päivämäärä" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>
