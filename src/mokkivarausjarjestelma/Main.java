@@ -1,4 +1,4 @@
-package sample;
+package mokkivarausjarjestelma;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +11,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("gui.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("Mökkivaraus");
+        primaryStage.setScene(new Scene(root, 1257, 732));
         primaryStage.show();
     }
 

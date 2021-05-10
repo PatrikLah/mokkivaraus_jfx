@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="1257.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mokkivarausjarjestelma.RaporttiController">
+   <children>
+      <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Valikko">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <SplitPane dividerPositions="0.46693227091633466" layoutY="25.0" prefHeight="732.0" prefWidth="1257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="215.0" layoutY="14.0" prefHeight="44.0" prefWidth="154.0" text="Varausraportti">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="108.0" prefHeight="31.0" prefWidth="116.0" text="Tarkasteltava aikaväli:" />
+                  <TextField fx:id="alkupvmTextField" layoutX="14.0" layoutY="139.0" />
+                  <TextField fx:id="loppupvmTextField" layoutX="186.0" layoutY="139.0" />
+                  <Button fx:id="raporttiButton" layoutX="23.0" layoutY="192.0" mnemonicParsing="false" onAction="#haeRaportti" text="Tee raportti" />
+                  <Label layoutX="170.0" layoutY="134.0" text="-">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TableView fx:id="taulukko" layoutX="150.0" layoutY="244.0" prefHeight="705.0" prefWidth="666.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                    <columns>
+                      <TableColumn fx:id="varattu_pvmColumn" prefWidth="108.0" text="Varattu" />
+                        <TableColumn prefWidth="75.0" text="Varaus">
+                           <columns>
+                              <TableColumn fx:id="varattu_alkupvmColumn" prefWidth="75.0" text="Alkupvm" />
+                              <TableColumn fx:id="varattu_loppupvmColumn" prefWidth="75.0" text="Loppupvm" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn fx:id="mokkiIDColumn" prefWidth="75.0" text="Mökki_id" />
+                        <TableColumn fx:id="mokkiColumn" prefWidth="75.0" text="Mökki" />
+                        <TableColumn fx:id="etunimiColumn" prefWidth="75.0" text="Etunimi" />
+                        <TableColumn fx:id="sukunimiColumn" prefWidth="75.0" text="Sukunimi" />
+                    </columns>
+                  </TableView>
+                  <Label layoutY="-1.0" prefHeight="31.0" prefWidth="97.0" text="Varausten määrä:" />
+                  <Label fx:id="varmaaraLabel" layoutX="97.0" layoutY="-1.0" prefHeight="31.0" prefWidth="145.0" text="&lt;Tähän varausten määrä&gt;" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
