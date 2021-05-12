@@ -5,10 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import uusivaraus.uusivaraus;
 
 import java.io.IOException;
 
@@ -45,16 +43,16 @@ public class Main extends Application {
     //metodi josta pääsee painiketta painamalla varauskalenteri tilaan
     public static void naytaVarausKalenteri() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(uusivaraus.class.getResource("/uusivaraus/kalenteri.fxml"));
+        loader.setLocation(Uusivaraus.varauskalenteri.class.getResource("/Uusivaraus/kalenteri.fxml"));
         AnchorPane varauskalenteri = loader.load();
         mainLayout.setCenter(varauskalenteri);
     }
     // metodi josta pääsee painiketta painamalla uusivaraus tilaan
     public static void naytaUusiVaraus() throws IOException{
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(uusivaraus.class.getResource("/uusivaraus/uusivaraus.fxml"));
+        loader.setLocation(Uusivaraus.MainKok.class.getResource("/Uusivaraus/kokeilu.fxml")); //TESTI
 
-        GridPane uusivaraus = loader.load();
+        AnchorPane uusivaraus = loader.load();
 
         Stage addDialogStage  = new Stage();
         addDialogStage.setTitle("uusi varaus");
@@ -65,8 +63,8 @@ public class Main extends Application {
         addDialogStage.setScene(scene);
         addDialogStage.showAndWait();
         //mainLayout.setCenter(uusivaraus);
-
     }
+  
 
     public static void main(String[] args) throws Exception{
         launch(args);
