@@ -38,9 +38,6 @@ public class Raporttioliot {
         this.mokkinimiO = mokkinimiO;
     }
 
-
-
-
     public String getEtunimiO() {
         return etunimiO;
     }
