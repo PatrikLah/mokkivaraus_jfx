@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Uusivaraus.KokeiluController">
+   <children>
+      <VBox layoutX="14.0" prefHeight="402.0" prefWidth="219.0" style="-fx-border-color: black; -fx-border-width: 0px 2px 0px 0px;">
+         <children>
+            <Label prefHeight="44.0" prefWidth="214.0" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" text="Uuden varauksen tiedot">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="98.0" text="Asiakas_id" />
+            <ComboBox fx:id="asiakasid" layoutX="10.0" layoutY="70.0" prefWidth="150.0" />
+            <Label layoutX="10.0" layoutY="53.0" prefHeight="17.0" prefWidth="98.0" text="Mökki" />
+            <ComboBox fx:id="mokki" layoutX="10.0" layoutY="70.0" prefWidth="150.0" />
+            <Label layoutX="10.0" layoutY="95.0" prefHeight="17.0" prefWidth="136.0" text="Aloitus päivämäärä" />
+            <DatePicker fx:id="alku" />
+            <Label layoutX="10.0" layoutY="138.0" prefHeight="17.0" prefWidth="136.0" text="Lopetus päivämäärä" />
+            <DatePicker fx:id="loppu" layoutX="10.0" layoutY="155.0" />
+            <Label layoutX="10.0" layoutY="181.0" prefHeight="17.0" prefWidth="136.0" text="Palvelut" />
+            <ComboBox fx:id="palvelut" layoutX="10.0" layoutY="113.0" prefWidth="150.0" />
+            <Label layoutX="10.0" layoutY="223.0" prefHeight="17.0" prefWidth="136.0" text="Palvelun päivämäärä" />
+            <DatePicker fx:id="palvelupvm" layoutX="10.0" layoutY="198.0" />
+            <Label prefHeight="17.0" prefWidth="235.0" />
+            <Button fx:id="lisaa" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="211.0" text="Lisää" />
+         </children>
+      </VBox>
+      <TableView fx:id="table" layoutX="240.0" layoutY="89.0" prefHeight="240.0" prefWidth="556.0">
+        <columns>
+            <TableColumn fx:id="varausidColumn" prefWidth="85.33335876464844" text="varausid_id" />
+          <TableColumn fx:id="asiakasidColumn" prefWidth="87.33334350585938" text="Asiakas_id" />
+          <TableColumn fx:id="alueColumn" prefWidth="79.3333740234375" text="Alue" />
+            <TableColumn fx:id="mokkiColumn" minWidth="5.0" prefWidth="69.66671752929688" text="Mökki" />
+            <TableColumn fx:id="alkuColumn" prefWidth="111.0" text="Alotus pvm" />
+            <TableColumn fx:id="loppuColumn" prefWidth="133.00006103515625" text="Lopetus pvm" />
+        </columns>
+      </TableView>
+      <Button fx:id="muokkaa" layoutX="592.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="80.0" text="Muokkaa" />
+      <Button fx:id="poista" layoutX="683.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="87.0" text="Poista" />
+      <Label layoutX="240.0" layoutY="51.0" prefHeight="25.0" prefWidth="376.0" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" text="Varaukset">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="478.0" layoutY="369.0" prefHeight="17.0" prefWidth="307.0" text="Huom! Valitse uuden varauksen tiedoista oikea asiakas_id" textFill="#00000083" />
+   </children>
+</AnchorPane>
