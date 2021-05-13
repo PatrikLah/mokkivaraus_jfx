@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LASKUTUS.PaaValikkoController">
+   <bottom>
+      <HBox prefHeight="47.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="TOP_CENTER" layoutX="30.0" mnemonicParsing="false" onAction="#goPaluu" prefHeight="27.0" prefWidth="143.0" text="Laskutus-päävalikko">
+               <HBox.margin>
+                  <Insets left="235.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="5.0" top="20.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+</BorderPane>

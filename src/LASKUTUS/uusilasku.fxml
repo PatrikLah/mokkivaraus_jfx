@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LASKUTUS.uusilaskuController">
+   <top>
+      <TitledPane animated="false" prefHeight="26.0" prefWidth="500.0" text="Tee uusi lasku" BorderPane.alignment="CENTER">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </content>
+      </TitledPane>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="46.0" prefWidth="499.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+             <Button fx:id="tallennalaskuButton" alignment="CENTER" mnemonicParsing="false" onAction="#tallennalasku" text="Tallenna" />
+            <Button fx:id="luoPDFButton" mnemonicParsing="false" onAction="#luoPDFtiedosto" prefHeight="25.0" prefWidth="70.0" text="Luo PDF" />
+             <Button fx:id="tyhjennaButton" alignment="CENTER" mnemonicParsing="false" onAction="#tyhjennaOnAction" prefHeight="25.0" prefWidth="64.0" text="Tyhjennä" textAlignment="CENTER" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <center>
+      <VBox prefHeight="600.0" prefWidth="400.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="25.0" prefWidth="146.0" text="Tallenna uusi lasku">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0" />
+            <GridPane prefHeight="198.0" prefWidth="480.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="summaField" onMouseClicked="#naytaTiedotTextareassa" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Varauksen loppumispvm" GridPane.rowIndex="3" />
+                  <Label text="Varauksen alkamispvm" GridPane.rowIndex="2" />
+                  <Label prefHeight="17.0" prefWidth="65.0" text="Summa" GridPane.rowIndex="4" />
+                  <DatePicker fx:id="varauksenalkupvmDate" onMouseClicked="#naytaTiedotTextareassa" prefHeight="25.0" prefWidth="236.0" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <padding>
+                        <Insets left="8.0" right="8.0" />
+                     </padding></DatePicker>
+                  <DatePicker fx:id="varauksenloppupvmDate" onMouseClicked="#naytaTiedotTextareassa" prefHeight="25.0" prefWidth="236.0" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <padding>
+                        <Insets left="8.0" right="8.0" />
+                     </padding></DatePicker>
+                  <Label text="Laskun tila" GridPane.rowIndex="6" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <children>
+                        <CheckBox fx:id="maksettuBox" mnemonicParsing="false" onAction="#handleMaksettuBox" prefHeight="17.0" prefWidth="79.0" text="Maksettu" />
+                        <CheckBox fx:id="eimaksettuBox" mnemonicParsing="false" onAction="#handleEiMaksettuBox" prefHeight="17.0" prefWidth="90.0" text="Ei maksettu" />
+                     </children>
+                     <padding>
+                        <Insets left="1.0" />
+                     </padding>
+                  </HBox>
+                  <Label text="Alv" GridPane.rowIndex="5" />
+                  <TextField fx:id="alvField" onMouseMoved="#naytaTiedotTextareassa" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label prefHeight="17.0" prefWidth="78.0" text="Varaus-ID" />
+                  <Label text="Lasku-ID" GridPane.rowIndex="1" />
+                  <TextField fx:id="laskuIDField" onMouseClicked="#naytaTiedotTextareassa" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="varausIDField" onMouseClicked="#naytaTiedotTextareassa" style="-fx-background-radius: 10;" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+            <TextArea fx:id="tekstialue" prefHeight="300.0" prefWidth="480.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </TextArea>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>
