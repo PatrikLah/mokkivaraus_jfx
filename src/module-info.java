@@ -5,5 +5,5 @@ module mokkivaraus.jfx {
     requires java.sql;
     requires mysql.connector.java;
 
-    opens mokkivarausjarjestelma;
+    opens varausraportti;
 }

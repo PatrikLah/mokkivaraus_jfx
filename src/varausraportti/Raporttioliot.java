@@ -1,4 +1,4 @@
-package mokkivarausjarjestelma;
+package varausraportti;
 
 public class Raporttioliot {
 

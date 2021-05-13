@@ -1,4 +1,4 @@
-package mokkivarausjarjestelma;
+package varausraportti;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

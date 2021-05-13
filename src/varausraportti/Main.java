@@ -1,4 +1,4 @@
-package mokkivarausjarjestelma;
+package varausraportti;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
