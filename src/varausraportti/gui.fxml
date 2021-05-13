@@ -9,7 +9,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="1257.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="varausraportti.RaporttiController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="varausraportti.RaporttiController">
    <children>
       <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -26,7 +26,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <SplitPane dividerPositions="0.3904382470119522" layoutY="25.0" prefHeight="732.0" prefWidth="1257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <SplitPane dividerPositions="0.313627254509018" layoutY="25.0" prefHeight="732.0" prefWidth="1257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
@@ -35,12 +35,12 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="23.0" layoutY="108.0" prefHeight="31.0" prefWidth="116.0" text="Tarkasteltava aikaväli:" />
+                  <Label layoutX="14.0" layoutY="112.0" prefHeight="31.0" prefWidth="116.0" text="Tarkasteltava aikaväli:" />
                   <Button fx:id="raporttiButton" layoutX="14.0" layoutY="199.0" mnemonicParsing="false" onAction="#haeRaportti" prefHeight="44.0" prefWidth="125.0" text="Tee raportti">
                      <font>
                         <Font size="18.0" />
                      </font></Button>
-                  <Label layoutX="171.0" layoutY="135.0" text="-">
+                  <Label layoutX="145.0" layoutY="136.0" text="-">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -50,8 +50,8 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <DatePicker fx:id="alkupvmTextField" layoutX="14.0" layoutY="143.0" prefHeight="38.0" prefWidth="154.0" />
-                  <DatePicker fx:id="loppupvmTextField" layoutX="193.0" layoutY="143.0" prefHeight="38.0" prefWidth="154.0" />
+                  <DatePicker fx:id="alkupvmTextField" layoutX="14.0" layoutY="143.0" prefHeight="38.0" prefWidth="125.0" />
+                  <DatePicker fx:id="loppupvmTextField" layoutX="168.0" layoutY="143.0" prefHeight="38.0" prefWidth="125.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -66,9 +66,9 @@
                            </columns>
                         </TableColumn>
                         <TableColumn fx:id="mokkiIDColumn" minWidth="7.0" prefWidth="37.0" text="M ID" />
-                        <TableColumn fx:id="mokkiColumn" prefWidth="234.0" text="Mökki" />
-                        <TableColumn fx:id="etunimiColumn" prefWidth="115.0" text="Etunimi" />
-                        <TableColumn fx:id="sukunimiColumn" prefWidth="108.0" text="Sukunimi" />
+                        <TableColumn fx:id="mokkiColumn" prefWidth="166.0" text="Mökki" />
+                        <TableColumn fx:id="etunimiColumn" prefWidth="111.0" text="Etunimi" />
+                        <TableColumn fx:id="sukunimiColumn" prefWidth="98.0" text="Sukunimi" />
                     </columns>
                   </TableView>
                   <Label layoutY="-1.0" prefHeight="31.0" prefWidth="97.0" text="Varausten määrä:" />
