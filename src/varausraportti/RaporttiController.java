@@ -14,6 +14,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
@@ -54,6 +55,7 @@ public class RaporttiController implements Initializable{
     //Tällä formatoidaan päivämäärät haluttuun muotoon
     SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
+
     ObservableList<Raporttioliot> atribuutit = FXCollections.observableArrayList();
 
     @FXML
@@ -61,8 +63,11 @@ public class RaporttiController implements Initializable{
        try {
            //Poistaa edellisen haun tulokset olioista
            atribuutit.clear();
-
-           String query = "SELECT * FROM varaus AS v JOIN asiakas AS a ON v.asiakas_id = a.asiakas_id JOIN mokki m on v.mokki_mokki_id = m.mokki_id WHERE (varattu_alkupvm BETWEEN '" + alkupvmTextField.getValue() + "' AND '" + loppupvmTextField.getValue() +  "') OR (varattu_loppupvm BETWEEN '" + alkupvmTextField.getValue() + "' AND '" + loppupvmTextField.getValue() + "')";
+           String alkupvm = alkupvmTextField.getValue().toString();
+           System.out.println("Taulukossa: "+ alkupvm);
+           String loppupvm = loppupvmTextField.getValue().toString();
+           System.out.println("Taulukossa: "+ loppupvm);
+           String query = "SELECT * FROM varaus AS v JOIN asiakas AS a ON v.asiakas_id = a.asiakas_id JOIN mokki m on v.mokki_mokki_id = m.mokki_id WHERE (varattu_alkupvm BETWEEN '" + alkupvm + "' AND '" + loppupvm +  "') OR (varattu_loppupvm BETWEEN '" + alkupvm + "' AND '" + loppupvm + "')";
 
            preparedStatement = connection.prepareStatement(query);
            resultSet = preparedStatement.executeQuery();
@@ -87,9 +92,15 @@ public class RaporttiController implements Initializable{
 
     @FXML
     private void paivitaMaara(){
+        String alkupvm = "";
+        String loppupvm = "";
         //laskee yläpalkkiin valittuna aikavälinä löytyneet varaukset
         try{
-            String maaraQuery = "SELECT COUNT(varaus_id) FROM varaus WHERE (varattu_alkupvm BETWEEN '" + alkupvmTextField.getValue() + "' AND '" + loppupvmTextField.getValue() +  "') OR (varattu_loppupvm BETWEEN '" + alkupvmTextField.getValue() + "' AND '" + loppupvmTextField.getValue() + "')";
+            alkupvm = alkupvmTextField.getValue().toString();
+            System.out.println("Maarassa: " + alkupvm);
+            loppupvm = loppupvmTextField.getValue().toString();
+            System.out.println("Maarassa: " + loppupvm);
+            String maaraQuery = "SELECT COUNT(varaus_id) FROM varaus WHERE (varattu_alkupvm BETWEEN '" + alkupvm + "' AND '" + loppupvm +  "') OR (varattu_loppupvm BETWEEN '" + alkupvm + "' AND '" + loppupvm + "')";
 
             String maara = "";
             preparedStatement = connection.prepareStatement(maaraQuery);
@@ -104,8 +115,7 @@ public class RaporttiController implements Initializable{
             e.printStackTrace();
             e.getCause();
         }
-        System.out.println(alkupvmTextField);
-        System.out.println(loppupvmTextField);
+
     }
 
 
