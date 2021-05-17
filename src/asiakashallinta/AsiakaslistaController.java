@@ -4,10 +4,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -113,15 +121,63 @@ public class AsiakaslistaController implements Initializable {
         lisaaButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
-                // TODO: avaa asiakashallinta.fxml
+                try{
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Asiakashallinta.fxml"));
+                    Parent parent = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initStyle(StageStyle.DECORATED);
+                    stage.setTitle("Lisää uusi asiakas");
+                    stage.setScene(new Scene(parent));
+                    // Päivittää parent-ikkunan
+                    stage.setOnHidden(new EventHandler<WindowEvent>() {
+                        @Override
+                        public void handle(WindowEvent windowEvent) {
+                            tuoData();
+                        }
+                    });
+                    stage.show();
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
         muokkaaButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
-            public void handle(javafx.event.ActionEvent event) {
-                // TODO: avaa asiakashallinta.fxml ja vie vallittuAsiakas mukana
+            public void handle(javafx.event.ActionEvent event){
+                if(valittuAsiakas.asiakasID != null){
+                    try{
+                        avaaAsiakashallinta(valittuAsiakas);
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
             }
         });
+    }
+
+
+    public Stage avaaAsiakashallinta(Asiakas asiakas) throws IOException{
+        FXMLLoader lataaja = new FXMLLoader(getClass().getResource("asiakashallinta.fxml"));
+
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setTitle("Muokkaa asiakkaan tietoja");
+        stage.setScene(new Scene(lataaja.load()));
+
+        AsiakashallintaController kontrolleri = lataaja.getController();
+        kontrolleri.alustaData(asiakas);
+        stage.setOnHidden(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                tuoData();
+            }
+        });
+
+        stage.show();
+
+        return stage;
     }
 
 

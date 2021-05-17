@@ -19,6 +19,10 @@ public class Asiakas {
         this.puhelin = puhelin;
     }
 
+    public Asiakas(){
+
+    }
+
     public Integer getAsiakasID() {
         return asiakasID;
     }

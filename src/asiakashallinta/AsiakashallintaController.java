@@ -1,17 +1,47 @@
 package asiakashallinta;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ResourceBundle;
 
 
-public class AsiakashallintaController {
+public class AsiakashallintaController{
+
+    public void initialize(URL url, ResourceBundle rb){
+        Asiakas tuotuAsiakas = new Asiakas();
+        tuotuAsiakas = this.valittuAsiakas;
+        alustaData(tuotuAsiakas);
+
+
+        Tietokantayhteys yhteys = new Tietokantayhteys();
+        Connection yhdistaDB = yhteys.getYhteys();
+
+        ResultSet hakutulos = null;
+
+        try{
+            String SQLhaePosti = "SELECT `toimipaikka` FROM posti WHERE `postinro` = '" + tuotuAsiakas.postinumero + "';";
+            String paikka;
+            PreparedStatement prepStatement = yhdistaDB.prepareStatement(SQLhaePosti);
+            hakutulos = prepStatement.executeQuery(SQLhaePosti);
+            paikka = hakutulos.getString("toimipaikka");
+            postinumeroTextField.setText(paikka);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
     @FXML
     private Button tallennaButton;
@@ -32,6 +62,7 @@ public class AsiakashallintaController {
     @FXML
     private TextField puhelinnumeroTextField;
     private Integer asiakasID;
+    private Asiakas valittuAsiakas;
 
     // Tallenna-painikkeen toiminta:
     // Tarkistaa jokaisen tekstikentän ja heittää ilmoituksen,
@@ -75,8 +106,8 @@ public class AsiakashallintaController {
 
             Tietokantayhteys yhteys = new Tietokantayhteys();
             Connection yhdistaDB = yhteys.getYhteys();
-            // Testataan updatea kun asiakasID = 11
-            asiakasID = 11;
+
+
             if (asiakasID == null) {
                 SQLkomento = "INSERT INTO `vn`.`asiakas` (`postinro`, `etunimi`, `sukunimi`, `lahiosoite`, `email`, `puhelinnro`) VALUES " +
                         "('" + postinumeroTextField.getText() +
@@ -90,8 +121,9 @@ public class AsiakashallintaController {
                 try {
                     Statement statement = yhdistaDB.createStatement();
                     statement.executeUpdate(SQLkomento);
-                    // Tähän oikea asiakasID. Nyt vain estää syöttämästä samoja tietoja uudestaan
-                    asiakasID = 1;
+
+                    Stage stage = (Stage) tallennaButton.getScene().getWindow();
+                    stage.close();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -112,6 +144,11 @@ public class AsiakashallintaController {
                 try {
                     Statement statement = yhdistaDB.createStatement();
                     statement.executeUpdate(SQLkomento);
+
+                    Stage stage = (Stage) tallennaButton.getScene().getWindow();
+
+                    stage.close();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -125,30 +162,19 @@ public class AsiakashallintaController {
         // Sulkee ikkunan
         Stage stage = (Stage) peruutaButton.getScene().getWindow();
         stage.close();
-        //Kokeilen tässä noutaa asiakkaan tiedot kannasta ennen kuin
-        // tähän tulee oikeasti peruutustoiminto
-        /*
-        Tietokantayhteys yhteys = new Tietokantayhteys();
-        Connection yhdistaDB = yhteys.getYhteys();
+    }
 
 
-        asiakasID = 1;
-        String kantahaku = "SELECT etunimi " + //", sukunimi, lahiosoite, email, puhelinnro " +
-                "FROM asiakas WHERE asiakas_id = " + asiakasID + ";";
+    public void alustaData(Asiakas asiakas){
 
-
-        try {
-            Statement statement = yhdistaDB.createStatement();
-            ResultSet hakutulos = statement.executeQuery(kantahaku);
-
-            while (hakutulos.next()) {
-                etunimiTextField.setText(hakutulos.getString("etunimi"));
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        */
+        valittuAsiakas = asiakas;
+        etunimiTextField.setText(valittuAsiakas.etunimi);
+        sukunimiTextField.setText(valittuAsiakas.sukunimi);
+        osoiteTextField.setText(valittuAsiakas.osoite);
+        postinumeroTextField.setText(valittuAsiakas.postinumero);
+        sahkopostiTextField.setText(valittuAsiakas.email);
+        puhelinnumeroTextField.setText(valittuAsiakas.puhelin);
+        asiakasID = valittuAsiakas.asiakasID;
 
     }
 
